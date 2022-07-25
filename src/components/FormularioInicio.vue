@@ -17,15 +17,17 @@
         </div>
         <div class="column">
           <section>
-            <strong>00:00:00</strong>
+            <strong>
+              {{ tempoDecorrido }}
+            </strong>
           </section>
-          <button class="button">
+          <button class="button" @click="iniciarContagem">
             <span class="icon">
               <i class="fas fa-play"></i>
             </span>
             <span>play</span>
           </button>
-          <button class="button">
+          <button class="button" @click="finalizarContagem">
             <span class="icon">
               <i class="fas fa-stop"></i>
             </span>
@@ -42,6 +44,27 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "FormularioInicio",
+  data() {
+    return {
+      tempoEmSegundos: 0,
+      cronometro: 0,
+    };
+  },
+  computed: {
+    tempoDecorrido () : string {
+      return new Date(this.tempoEmSegundos * 1000).toISOString().substring(11,19)
+    }
+  },
+  methods: {
+    iniciarContagem () {
+      this.cronometro = setInterval(() => {
+        this.tempoEmSegundos += 1        
+      }, 1000)
+    },
+    finalizarContagem () {
+      clearInterval(this.cronometro)
+    }
+  }
 });
 </script>
 
