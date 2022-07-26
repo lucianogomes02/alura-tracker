@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box formulario">
     <div class="column">
       <div
         class="is-flex is-align-items-center is-justify-content-space-between"
@@ -51,4 +51,8 @@ export default defineComponent({
 </script>
 
 <style>
+.formulario {
+  color: var(--texto-primario);
+  background-color: var(--bg-primario);
+}
 </style>
