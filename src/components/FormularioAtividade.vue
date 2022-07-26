@@ -13,10 +13,11 @@
             type="text"
             class="input"
             placeholder="Qual tarefa você deseja iniciar?"
+            v-model="descricao"
           />
         </div>
         <div class="column">
-          <TemporizadorAtividade />
+          <TemporizadorAtividade @aoTemporizadorFinalizado="finalizarTarefa"/>
         </div>
       </div>
     </div>
@@ -29,7 +30,19 @@ import TemporizadorAtividade from "./TemporizadorAtividade.vue";
 
 export default defineComponent({
     name: "FormularioAtividade",
-    components: { TemporizadorAtividade }
+    components: { TemporizadorAtividade },
+    data() {
+      return {
+        descricao: ''
+      }
+    },
+    methods: {
+      finalizarTarefa (tempoDecorrido: number) : void {
+        console.log(tempoDecorrido)
+        console.log(this.descricao)
+        this.descricao = ''
+      }
+    }
 });
 </script>
 

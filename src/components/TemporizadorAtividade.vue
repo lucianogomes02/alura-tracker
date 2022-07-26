@@ -22,6 +22,8 @@ import CronometroAtividade from "./CronometroAtividade.vue";
 
 export default defineComponent({
     name: "TemporizadorAtividade",
+    components: { CronometroAtividade },
+    emits: ['aoTemporizadorFinalizado'],
     data() {
         return {
             tempoEmSegundos: 0,
@@ -39,9 +41,10 @@ export default defineComponent({
         finalizarContagem() {
             this.cronometroRodando = false;
             clearInterval(this.cronometro);
+            this.$emit('aoTemporizadorFinalizado', this.tempoEmSegundos);
+            this.tempoEmSegundos = 0;
         }
     },
-    components: { CronometroAtividade }
 });
 </script>
 
