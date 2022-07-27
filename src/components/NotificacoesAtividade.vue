@@ -3,7 +3,7 @@
         <article class="message" :class="contexto[notificacao.tipo]" v-for="notificacao in notificacoes" :key="notificacao.id">
             <div class="message-header">
                 <p>{{ notificacao.titulo }}</p>
-                <button class="delete" aria-label="delete" @click="fecharNotificacao(notificacao.id)"></button>
+                <button class="delete" aria-label="delete"></button>
             </div>
             <div class="message-body">
                 {{ notificacao.texto }}
