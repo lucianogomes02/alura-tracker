@@ -5,7 +5,36 @@
       "id": 1
     },
     {
-      "nome": "sadasdasd",
+      "id": 3,
+      "nome": "Tarefa Teste 1"
+    }
+  ],
+  "tarefas": [
+    {
+      "id": 1,
+      "duracaoEmSegundos": 120,
+      "descricao": "Configuração do json-server",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker Vue3"
+      }
+    },
+    {
+      "duracaoEmSegundos": 5,
+      "descricao": "Tarefa Teste Cadastro",
+      "projeto": {
+        "id": 3,
+        "nome": "Tarefa Teste 1"
+      },
+      "id": 2
+    },
+    {
+      "duracaoEmSegundos": 12,
+      "descricao": "Tarefa Teste 2",
+      "projeto": {
+        "nome": "Alura Tracker Vue3",
+        "id": 1
+      },
       "id": 3
     }
   ]
