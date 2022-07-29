@@ -1,6 +1,6 @@
 <template>
     <CaixaAtividades>
-        <div class="columns">
+        <div class="columns clicavel" @click="tarefaSelecionada">
             <div class="column is-4">
                 {{ tarefa.descricao || 'Tarefa Sem Descrição'}}
             </div>
@@ -23,14 +23,23 @@ import CaixaAtividades from './CaixaAtividades.vue'
 export default defineComponent ({
     name: "TarefaAtividade",
     components: { CronometroAtividade, CaixaAtividades },
+    emits: ['aoSelecionarTarefa'],
     props: {
         tarefa: {
             type: Object as PropType<ITarefa>,
             required: true,
         }
+    },
+    methods: {
+        tarefaSelecionada() : void {
+            this.$emit('aoSelecionarTarefa', this.tarefa)
+        }
     }
 })
 </script>
 
-<style>
+<style scoped>
+.clicavel {
+    cursor: pointer;
+}
 </style>
