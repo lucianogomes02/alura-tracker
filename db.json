@@ -13,7 +13,7 @@
     {
       "id": 1,
       "duracaoEmSegundos": 120,
-      "descricao": "Configuração do json-server",
+      "descricao": "Configuração do json-server 2",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker Vue3"
@@ -30,7 +30,7 @@
     },
     {
       "duracaoEmSegundos": 12,
-      "descricao": "Tarefa Teste 2",
+      "descricao": "Tarefa Teste 2 edita",
       "projeto": {
         "nome": "Alura Tracker Vue3",
         "id": 1

@@ -24,7 +24,7 @@
              </div>
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success">Salvar</button>
+            <button @click="alterarTarefa" class="button is-success">Salvar</button>
             <button @click="fecharModal" class="button">Cancelar</button>
           </footer>
         </div>
@@ -39,7 +39,7 @@ import TarefaAtividade from "../components/TarefaAtividade.vue";
 import ITarefa from '../interfaces/ITarefa'
 import CaixaAtividades from "../components/CaixaAtividades.vue";
 import { useStore } from "@/store";
-import { OBTER_TAREFAS, CADASTRAR_TAREFA, OBTER_PROJETOS} from "@/store/tipo-acoes";
+import { OBTER_TAREFAS, CADASTRAR_TAREFA, OBTER_PROJETOS, ALTERAR_TAREFA} from "@/store/tipo-acoes";
 
 export default defineComponent({
   name: "TarefasAtividade",
@@ -67,6 +67,10 @@ export default defineComponent({
     },
     fecharModal () {
       this.tarefaSelecionada = null
+    },
+    alterarTarefa () {
+      this.store.dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
+        .then(() => this.fecharModal())
     }
   },
   setup () {
