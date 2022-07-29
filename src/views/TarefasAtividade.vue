@@ -81,6 +81,11 @@ export default defineComponent({
 });
 </script>
 
-<style>
-
+<style scoped>
+.modal-card-head {
+  height: 60px;
+}
+.modal-card-title {
+  text-align: left;
+}
 </style>
