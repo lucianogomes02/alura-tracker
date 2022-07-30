@@ -4,6 +4,14 @@
       <CaixaAtividades v-if="semTarefas">
         Você não está muito produtivo hoje :(
       </CaixaAtividades>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="text" placeholder="Procure uma tarefa" v-model="filtro">
+          <span class="icon is-small is-left">
+            <i class="fas fa-search"></i>
+          </span>
+        </p>
+      </div>
       <TarefaAtividade v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" @aoSelecionarTarefa="selecionarTarefa"/>
       <div class="modal" :class="{ 'is-active': tarefaSelecionada }" v-if="tarefaSelecionada">
         <div class="modal-background"></div>
@@ -33,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import FormularioAtividade from "../components/FormularioAtividade.vue";
 import TarefaAtividade from "../components/TarefaAtividade.vue";
 import ITarefa from '../interfaces/ITarefa'
@@ -74,12 +82,22 @@ export default defineComponent({
     }
   },
   setup () {
-    const store = useStore()
-    store.dispatch(OBTER_TAREFAS)
-    store.dispatch(OBTER_PROJETOS)
+    const store = useStore();
+    store.dispatch(OBTER_TAREFAS);
+    store.dispatch(OBTER_PROJETOS);
+
+    const filtro = ref("");
+
+    const tarefas = computed(() => 
+    store.state.tarefa.tarefas.filter(
+      (tarefa) => !filtro.value || tarefa.descricao.includes(filtro.value)
+      )
+    );
+
     return {
-      tarefas: computed(() => store.state.tarefa.tarefas),
-      store
+      tarefas,
+      store,
+      filtro
     }
   }
 });
