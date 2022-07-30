@@ -13,10 +13,8 @@
         Você não está muito produtivo hoje :(
       </CaixaAtividades>
       <TarefaAtividade v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" @aoSelecionarTarefa="selecionarTarefa"/>
-      <div class="modal" :class="{ 'is-active': tarefaSelecionada }" v-if="tarefaSelecionada">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
+      <TarefaModal :mostrar="tarefaSelecionada != null">
+        <header class="modal-card-head">
             <p class="modal-card-title">Editando Tarefa</p>
             <button @click="fecharModal" class="delete" aria-label="close"></button>
           </header>
@@ -35,8 +33,7 @@
             <button @click="alterarTarefa" class="button is-success">Salvar</button>
             <button @click="fecharModal" class="button">Cancelar</button>
           </footer>
-        </div>
-      </div>
+      </TarefaModal>
     </div>
 </template>
 
@@ -46,6 +43,7 @@ import FormularioAtividade from "../components/FormularioAtividade.vue";
 import TarefaAtividade from "../components/TarefaAtividade.vue";
 import ITarefa from '../interfaces/ITarefa'
 import CaixaAtividades from "../components/CaixaAtividades.vue";
+import TarefaModal from "../components/TarefaModal.vue";
 import { useStore } from "@/store";
 import { OBTER_TAREFAS, CADASTRAR_TAREFA, OBTER_PROJETOS, ALTERAR_TAREFA} from "@/store/tipo-acoes";
 
@@ -54,7 +52,8 @@ export default defineComponent({
   components: {
     FormularioAtividade,
     TarefaAtividade,
-    CaixaAtividades
+    CaixaAtividades,
+    TarefaModal,
   },
   data () {
     return {

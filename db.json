@@ -30,7 +30,7 @@
     },
     {
       "duracaoEmSegundos": 12,
-      "descricao": "Tarefa Teste 2 edita",
+      "descricao": "Tarefa Teste 2 edita 222",
       "projeto": {
         "nome": "Alura Tracker Vue3",
         "id": 1
@@ -39,7 +39,7 @@
     },
     {
       "duracaoEmSegundos": 2,
-      "descricao": "Rerereredadadad",
+      "descricao": "Rerereredadadadda sasasa",
       "projeto": {
         "nome": "R",
         "id": 5
