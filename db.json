@@ -5,8 +5,8 @@
       "nome": "Alura Tracker Vue341"
     },
     {
-      "nome": "Projeto Teste Cadastrar",
-      "id": 5
+      "id": 6,
+      "nome": "Estudando Excel"
     }
   ],
   "tarefas": [
@@ -54,6 +54,15 @@
         "nome": "Alura Tracker Vue341"
       },
       "id": 5
+    },
+    {
+      "duracaoEmSegundos": 11,
+      "descricao": "Estudando formulas do Excel parte 2",
+      "projeto": {
+        "id": 6,
+        "nome": "Estudando Excel"
+      },
+      "id": 6
     }
   ]
 }
