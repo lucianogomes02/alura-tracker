@@ -24,6 +24,7 @@ import { ALTERA_PROJETO } from "@/store/tipo-mutacoes";
 import { CADASTRAR_PROJETO, ALTERAR_PROJETO } from "@/store/tipo-acoes";
 import { TipoNotificacao } from "@/interfaces/INotificacao";
 import useNotificador from "@/hooks/notificador"
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "FormularioProjetosAtividade",
@@ -32,27 +33,8 @@ export default defineComponent({
       type: String
     }
   },
-  methods: {
-    criarOuAlterarProjeto () {
-      if (this.id) {
-        this.store.dispatch(ALTERAR_PROJETO, {
-          id: this.id,
-          nome: this.nomeDoProjeto
-        }).then(() => this.lidarComSucesso());
-      } else {
-        this.store.dispatch(CADASTRAR_PROJETO, this.nomeDoProjeto)
-          .then(() => {
-            this.lidarComSucesso()
-          });
-      }
-    },
-    lidarComSucesso () {
-      this.nomeDoProjeto = "";
-      this.notificar(TipoNotificacao.SUCESSO, 'Projeto Cadastrado!', 'Projeto cadastrado com sucesso.')
-      this.$router.push('/projetos')
-    }
-  },
   setup (props) {
+    const router = useRouter();
     const store = useStore();
     const { notificar } = useNotificador();
 
@@ -65,10 +47,29 @@ export default defineComponent({
       nomeDoProjeto.value = projeto?.nome || ''
     }
 
+    const lidarComSucesso = () => {
+      nomeDoProjeto.value = "";
+      notificar(TipoNotificacao.SUCESSO, 'Projeto Cadastrado!', 'Projeto cadastrado com sucesso.')
+      router.push('/projetos')
+    }
+
+    const criarOuAlterarProjeto = () => {
+      if (props.id) {
+        store.dispatch(ALTERAR_PROJETO, {
+          id: props.id,
+          nome: nomeDoProjeto.value
+        }).then(() => lidarComSucesso());
+      } else {
+        store.dispatch(CADASTRAR_PROJETO, nomeDoProjeto.value)
+          .then(() => {
+            lidarComSucesso()
+          });
+      }
+    }
+
     return {
-      store,
-      notificar,
       nomeDoProjeto,
+      criarOuAlterarProjeto,
     }
   }
 });
